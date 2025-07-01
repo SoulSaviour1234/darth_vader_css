@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors and Backgrounds</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <button id="toggleTheme">🌙 Dark Mode</button>
+
+    <div class="one">
+        <h2>Colors and Backgrounds</h2>
+        <p>This page demonstrates the use of colors and backgrounds in CSS.</p>
+    </div>
+    <div class="two">
+        <h2>Background Color</h2>
+        <p>The background color of this section is set using CSS.</p>
+    </div>
+    <div class="three">
+        <h2>Text Color</h2>
+        <p>The text color of this section is also set using CSS.</p>
+    </div>
+    <!-- <script>
+        const blocks = document.querySelectorAll('.one, .two, .three');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blocks.forEach(el => observer.observe(el));
+    </script>
+    <script>
+        const blocks = document.querySelectorAll('.one, .two, .three');
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); // delay between animations
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blocks.forEach(el => observer.observe(el));
+    </script> -->
+    <script>
+        // 🌙 Theme Toggle
+        const toggleBtn = document.getElementById("toggleTheme");
+        toggleBtn.onclick = () => {
+            document.body.classList.toggle("dark");
+            toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+        };
+
+        // 🎬 Scroll reveal
+        const blocks = document.querySelectorAll('.one, .two, .three');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        blocks.forEach(el => observer.observe(el));
+
+        // 🔊 Click sound
+        const clickSound = new Audio("https://www.myinstants.com/media/sounds/mario-coin.mp3");
+        blocks.forEach(el => el.addEventListener("click", () => clickSound.play()));
+    </script>
+
+
+
+</body>
+
+</html>

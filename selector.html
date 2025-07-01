@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selector</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #f875ff, #6ca7ff);
+    }
+
+    /* 🔝 Scroll Progress Bar */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 6px;
+      background: #ffffff;
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.25s ease;
+    }
+
+    /* 🧭 Floating Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #333;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #ffccff;
+      text-decoration: underline;
+    }
+
+    /* Headings */
+    h1 {
+      text-align: center;
+      color: #000;
+      font-size: 28px;
+      margin-top: 60px;
+    }
+
+    p {
+      text-align: center;
+      color: #000;
+    }
+
+    .levels {
+      padding: 20px;
+      background-color: #75ff48;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .numbers {
+      background-color: #ffe0b2;
+    }
+
+    #one, #two, #five {
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
+      color: white;
+    }
+
+    #one { background-color: #00bfff; }
+    #two { background-color: #ff4d4d; }
+    #five { background-color: #8e44ad; }
+
+    #text {
+      display: block;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f0f4fa;
+      border-radius: 10px;
+      max-width: 600px;
+    }
+
+    /* 🔼 Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    #backToTop:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 📊 Scroll Progress Bar -->
+  <div id="progressBar"></div>
+
+  <!-- 🧭 Navigation Bar -->
+  <nav>
+    <a href="#one">Topic 1</a>
+    <a href="#two">Topic 2</a>
+    <a href="#three">Topic 3</a>
+    <a href="#four">Topic 4</a>
+    <a href="#five">Topic 5</a>
+  </nav>
+
+  <!-- 🆙 Back to Top Button -->
+  <button id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <!-- 📚 Content Sections -->
+  <div id="one">
+    <h1>Topic 1: Introduction to HTML</h1>
+    <p>This section covers the basics of HTML, including elements, attributes, and structure.</p>
+  </div>
+
+  <div id="two">
+    <h1>Topic 2: CSS Fundamentals</h1>
+    <p>This section introduces CSS, focusing on styling, selectors, and layout techniques.</p>
+  </div>
+
+  <section id="three" class="levels">
+    <h1>Topic 3: JavaScript Basics</h1>
+    <p>This section explores JavaScript fundamentals, including variables, functions, and events.</p>
+  </section>
+
+  <section id="four" class="levels numbers">
+    <h1>Topic 4: Responsive Design</h1>
+    <p>This section discusses responsive design principles, media queries, and mobile-first design.</p>
+  </section>
+
+  <div id="five">
+    <h1>Topic 5: Web Accessibility</h1>
+    <p>This section emphasizes the importance of web accessibility and best practices for inclusive design.</p>
+  </div>
+
+  <div id="text">
+    <p>This is an example of a selector in HTML. It demonstrates how to use CSS to style different sections of a webpage.</p>
+  </div>
+
+  <!-- 📜 JavaScript for scroll features -->
+  <script>
+    // Scroll Progress Bar
+    window.onscroll = function () {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrollPercent = (scrollTop / scrollHeight) * 100;
+      document.getElementById("progressBar").style.width = scrollPercent + "%";
+
+      // Show/hide back to top button
+      const btn = document.getElementById("backToTop");
+      if (scrollTop > 300) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+
+    // Scroll to top smoothly
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(-45deg, #32ff8b, #00c896, #00f2ff, #98fb98);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+  position: relative;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+/* 🌈 Animated Gradient */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✨ Sparkle Effect */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: sparkleMove 3s linear infinite;
+}
+
+@keyframes sparkleMove {
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* 🍥 Floating Emojis */
+.emoji {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatEmoji 12s linear infinite;
+}
+
+@keyframes floatEmoji {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* 💫 Chakra Glow */
+.chakra {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 60px 30px rgba(0, 255, 255, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+}
+
+/* 🔥 Naruto Quote Styling */
+.quote {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 5px #000;
+  opacity: 0;
+  animation: fadeQuotes 20s linear infinite;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* ✨ Fading Animation for Quotes */
+@keyframes fadeQuotes {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  40%  { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 0; }
+}

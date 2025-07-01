@@ -1,0 +1,118 @@
+:root {
+    --bg-light: rgba(255, 196, 196, 0.558);
+    --bg-dark: #121212;
+    --text-light: #000;
+    --text-dark: #fff;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    font-family: Arial, sans-serif;
+    padding: 30px 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* 🌙 Dark mode toggle class */
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+/* 💡 Toggle Button */
+#toggleTheme {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 8px 14px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.one,
+.two,
+.three {
+    height: 100px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s;
+    opacity: 0;
+    transform: translateY(30px);
+    padding: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    color: inherit;
+}
+
+.one,
+.two,
+.three {
+    height: auto;
+    /* Allow content height */
+    padding: 20px;
+    flex-direction: column;
+    /* Stack items vertically */
+}
+
+/* Optional: spacing between heading and paragraph */
+.one h1,
+.two h1,
+.three h1 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.one p,
+.two p,
+.three p {
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+}
+
+/* 🎨 Color themes */
+.one {
+    background: rgb(125, 125, 255);
+}
+
+.two {
+    background: rgb(255, 125, 125);
+}
+
+.three {
+    background: rgb(125, 255, 125);
+}
+
+body.dark .one {
+    background: #5555aa;
+}
+
+body.dark .two {
+    background: #aa5555;
+}
+
+body.dark .three {
+    background: #55aa55;
+}
+
+.one:hover,
+.two:hover,
+.three:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease;
+}

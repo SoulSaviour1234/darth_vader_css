@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topics Overview</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #d9e4f5, #f0f4fa);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #333;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      color: #00cfff;
+    }
+
+    .section {
+      padding: 100px 20px 60px;
+      margin-top: 60px;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    #one   { background-color: #00bfff; }
+    #two   { background-color: #ff4d4d; }
+    #three { background-color: #ffd700; color: #333; }
+    #four  { background-color: #28a745; }
+    #five  { background-color: #8e44ad; }
+
+    .quote-bar {
+      background-color: #222;
+      color: #eee;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 12px;
+      font-style: italic;
+      position: sticky;
+      top: 46px;
+      z-index: 99;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#one">Topic 1</a>
+    <a href="#two">Topic 2</a>
+    <a href="#three">Topic 3</a>
+    <a href="#four">Topic 4</a>
+    <a href="#five">Topic 5</a>
+  </nav>
+
+  <!-- Motivational Quote -->
+  <div class="quote-bar">
+    "The journey of a thousand miles begins with a single step."
+  </div>
+
+  <!-- Sections -->
+  <div id="one" class="section">
+    <h2>Topic 1</h2>
+    <p>Content for topic 1 goes here.</p>
+  </div>
+
+  <div id="two" class="section">
+    <h2>Topic 2</h2>
+    <p>Content for topic 2 goes here.</p>
+  </div>
+
+  <div id="three" class="section">
+    <h2>Topic 3</h2>
+    <p>Content for topic 3 goes here.</p>
+  </div>
+
+  <div id="four" class="section">
+    <h2>Topic 4</h2>
+    <p>Content for topic 4 goes here.</p>
+  </div>
+
+  <div id="five" class="section">
+    <h2>Topic 5</h2>
+    <p>Content for topic 5 goes here.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Position</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      height: 75vh;
+      width: 42%;
+      background-image: url('https://images.pexels.com/photos/534164/pexels-photo-534164.jpeg');
+      background-repeat: no-repeat;
+      background-size: cover; /* changed from 2500px 2000px */
+      background-position: center;
+      border: 5px solid #000;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container"></div>
+</body>
+</html>

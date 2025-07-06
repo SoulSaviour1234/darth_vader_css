@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beautiful Background</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100%;
+      background-image: url('https://images.pexels.com/photos/32711104/pexels-photo-32711104.jpeg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .glass-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px 60px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    #typing-text {
+      font-size: 18px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      animation: typing 5s steps(60, end), blink 0.8s step-end infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from { border-color: white; }
+      to { border-color: transparent; }
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #ff4081;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ff79a6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="glass-box">
+      <h1>Welcome!</h1>
+      <p id="typing-text">This page has an animated background, typing effect, and a fun button!</p>
+      <button class="btn" onclick="playMusic()">Toggle Music 🎵</button>
+    </div>
+  </div>
+
+  <!-- 🎧 Background Music -->
+  <audio id="bg-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    let playing = false;
+
+    function playMusic() {
+      if (!playing) {
+        music.play();
+      } else {
+        music.pause();
+      }
+      playing = !playing;
+    }
+  </script>
+</body>
+</html>

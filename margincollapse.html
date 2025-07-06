@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Margin Collapse Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper {
+      max-width: 700px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .container1, .container2 {
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .container1 {
+      background-color: lightblue;
+      margin-bottom: 30px;
+      border: 2px dashed #0004;
+    }
+
+    .container2 {
+      background-color: lightcoral;
+      margin-top: 50px;
+      border: 2px dashed #0004;
+    }
+
+    .no-collapse .container1 {
+      margin-bottom: 30px;
+      padding-bottom: 1px; /* triggers separation */
+    }
+
+    .no-collapse .container2 {
+      margin-top: 50px;
+      padding-top: 1px; /* triggers separation */
+    }
+
+    .label {
+      text-align: center;
+      margin: 15px 0;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      font-weight: bold;
+      background-color: #003399;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0055ff;
+    }
+
+    .tip {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body id="body">
+  <div class="wrapper">
+    <div class="container1">
+      <h2>Container 1</h2>
+      <p>Bottom margin: <strong>30px</strong></p>
+    </div>
+
+    <div class="container2">
+      <h2>Container 2</h2>
+      <p>Top margin: <strong>50px</strong></p>
+      <p><em>The visible space is only the larger margin due to margin collapse.</em></p>
+    </div>
+
+    <div class="label">👆 Margin collapse: Only <strong>50px</strong> spacing shown!</div>
+
+    <button onclick="toggleCollapse()">🔄 Toggle Margin Collapse</button>
+
+    <div class="tip">
+      💡 Add 1px <code>padding</code> or <code>border</code> to separate elements and prevent margin collapse.
+    </div>
+  </div>
+
+  <script>
+    function toggleCollapse() {
+      document.body.classList.toggle('no-collapse');
+    }
+  </script>
+</body>
+</html>

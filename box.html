@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Box Model</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #003399;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0055ff;
+      transform: scale(1.05);
+    }
+
+    .margin {
+      background-color: rgba(255, 0, 0, 0.1);
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .border {
+      border: 5px solid #003399;
+      padding: 20px;
+      background-color: rgba(0, 0, 255, 0.05);
+    }
+
+    .padding {
+      background-color: rgba(0, 255, 0, 0.1);
+      padding: 20px;
+    }
+
+    .content {
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    h1 {
+      color: #003399;
+      margin-bottom: 10px;
+    }
+
+    p,
+    ol {
+      margin-bottom: 10px;
+    }
+
+    ol {
+      padding-left: 20px;
+    }
+
+    /* Smooth hide */
+    .hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Flash animation */
+    .flash {
+      animation: flashAnim 0.4s ease;
+    }
+
+    @keyframes flashAnim {
+      0% {
+        box-shadow: 0 0 0px white;
+      }
+
+      50% {
+        box-shadow: 0 0 20px white;
+      }
+
+      100% {
+        box-shadow: 0 0 0px white;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="controls">
+    <button title="Show or hide margin layer" onclick="toggleLayer('margin')">Toggle Margin 🔴</button>
+    <button title="Show or hide border layer" onclick="toggleLayer('border')">Toggle Border 🔵</button>
+    <button title="Show or hide padding layer" onclick="toggleLayer('padding')">Toggle Padding 🟢</button>
+    <button title="Show or hide content layer" onclick="toggleLayer('content')">Toggle Content ⚪</button>
+    <button title="Show all layers again" onclick="resetAll()">Reset All ♻️</button>
+  </div>
+
+  <div class="margin" id="marginLayer">
+    <div class="border" id="borderLayer">
+      <div class="padding" id="paddingLayer">
+        <div class="content" id="contentLayer">
+          <h1>Understanding the Box Model</h1>
+          <p>The box model is a fundamental concept in CSS that describes how elements are structured and displayed on a
+            webpage.</p>
+          <ol>
+            <li><strong>Content:</strong> The actual content of the box, such as text or images.</li>
+            <li><strong>Padding:</strong> Space between the content and the border, inside the box.</li>
+            <li><strong>Border:</strong> A line surrounding the padding and content.</li>
+            <li><strong>Margin:</strong> Space outside the border, separating this box from others.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleLayer(layer) {
+      const el = document.getElementById(layer + "Layer");
+      el.classList.toggle("hidden");
+
+      if (!el.classList.contains("hidden")) {
+        el.classList.add("flash");
+        setTimeout(() => el.classList.remove("flash"), 400);
+      }
+    }
+
+    function resetAll() {
+      ["margin", "border", "padding", "content"].forEach(layer => {
+        const el = document.getElementById(layer + "Layer");
+        el.classList.remove("hidden");
+        el.classList.add("flash");
+        setTimeout(() => el.classList.remove("flash"), 400);
+      });
+    }
+  </script>
+</body>
+
+</html>

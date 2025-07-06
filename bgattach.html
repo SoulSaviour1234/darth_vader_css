@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Attachment Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            min-height: 200vh;
+            /* ⬅️ Changed from 300vh to 100vh */
+            background-image: url(https://images.pexels.com/photos/459277/pexels-photo-459277.jpeg?_gl=1*1cdirgz*_ga*MTYyMTMwMDU1Ny4xNzUxNDAwNjE1*_ga_8JE65Q40S6*czE3NTE3OTQxNjgkbzQkZzEkdDE3NTE3OTQyMDEkajI3JGwwJGgw);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* ✅ Stack heading + buttons vertically */
+            padding: 20px;
+            transition: background-attachment 0.3s ease;
+        }
+
+
+        .content {
+            max-width: 700px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #ffffffcc;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 300px;
+            font-size: 14px;
+            color: #111;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+
+        /* Light/Dark mode styles */
+        body.dark {
+            background-color: #111;
+            color: #eee;
+        }
+
+        body.dark .sidebar {
+            background-color: #222;
+            color: #fff;
+        }
+
+        body.dark .content {
+            background-color: rgba(255, 255, 255, 0.07);
+            color: #fff;
+        }
+
+        body.dark button {
+            background-color: #444;
+            color: #fff;
+        }
+
+        body.light button {
+            background-color: #eee;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body class="light">
+    <div class="container" id="bgContainer">
+        <div class="content">
+            <h2>🌄 Background Attachment Demo</h2>
+            <p>
+                The <code>background-attachment</code> property controls how the background image behaves during
+                scrolling.
+            </p>
+            <div class="btn-group">
+                <button onclick="toggleAttachment()">🔄 Toggle Attachment</button>
+                <button onclick="toggleTheme()">🌗 Toggle Theme</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Explanation -->
+    <div class="sidebar">
+        <h4><code>background-attachment</code> values:</h4>
+        <ul>
+            <li><strong>scroll</strong>: Moves with the page</li>
+            <li><strong>fixed</strong>: Stays in place when scrolling</li>
+            <li><strong>local</strong>: Scrolls with the content inside an element</li>
+            <li><strong>inherit</strong>: Inherits from parent element</li>
+        </ul>
+    </div>
+
+    <!-- Sound -->
+    <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-29.mp3" preload="auto"></audio>
+
+    <script>
+        const container = document.getElementById("bgContainer");
+        const clickSound = document.getElementById("clickSound");
+        let isFixed = true;
+
+        function toggleAttachment() {
+            isFixed = !isFixed;
+            container.style.backgroundAttachment = isFixed ? "fixed" : "scroll";
+            playSound();
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle("dark");
+            body.classList.toggle("light");
+            playSound();
+        }
+
+        function playSound() {
+            clickSound.currentTime = 0;
+            clickSound.play();
+        }
+        container.style.backgroundAttachment = "fixed"; // set initial value
+
+    </script>
+</body>
+
+</html>

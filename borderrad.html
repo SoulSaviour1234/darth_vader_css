@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Box Model</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #dbe6f6, #c5796d);
+      color: #111;
+      transition: all 0.4s ease;
+    }
+
+    body.dark {
+      background: linear-gradient(to right, #232526, #414345);
+      color: #eee;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+      border: 2px solid #333;
+      border-radius: 50px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: float 4s ease-in-out infinite;
+      backdrop-filter: blur(3px);
+      transition: all 0.4s ease;
+    }
+
+    body.dark .container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #aaa;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #003399;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0055ff;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to My Stylish Box!</h1>
+    <p>This box demonstrates border-radius, parallax backgrounds, dark mode, and typing effects in CSS.</p>
+    <button onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive CSS Positioning Demo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+
+        /* Navigation Bar */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            padding: 12px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav li a:hover {
+            color: #2196f3;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .demo-box {
+            position: relative;
+            border: 2px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            min-height: 200px;
+            overflow: hidden;
+        }
+
+        .demo-box h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .example {
+            width: 120px;
+            height: 80px;
+            background-color: #4fc3f7;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .static .example {
+            position: static;
+        }
+
+        .relative .example {
+            position: relative;
+            top: 20px;
+            left: 20px;
+        }
+
+        .absolute {
+            position: relative;
+        }
+
+        .absolute .example {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .fixed .example {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6f61;
+            z-index: 9999;
+        }
+
+        .sticky-wrapper {
+            height: 300px;
+            overflow: auto;
+            border: 1px dashed #aaa;
+            padding: 10px;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 10px;
+            background-color: #81c784;
+            padding: 10px;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ✅ Navigation Bar -->
+    <nav class="nav">
+        <ul>
+            <li><a href="https://soulsaviour1234.github.io/darth_vader_css/text.html">Text Properties</a></li>
+            <li><a href="https://soulsaviour1234.github.io/darth_vader_css/size.html">Size Properties</a></li>
+            <li><a href="https://soulsaviour1234.github.io/darth_vader_css/maxminsize.html">Max & Min Sizes</a></li>
+            <li><a href="https://soulsaviour1234.github.io/darth_vader_css/noneandhidden.html">Display vs Visibility</a></li>
+        </ul>
+    </nav>
+
+    <h1>Interactive CSS Positioning Demo</h1>
+    <p class="description">Hover over each box to understand how each CSS positioning type behaves.</p>
+
+    <div class="demo-container">
+        <div class="demo-box static">
+            <h2>Static Position</h2>
+            <p>This is the default position. The element follows normal document flow.</p>
+            <div class="example">Static</div>
+        </div>
+
+        <div class="demo-box relative">
+            <h2>Relative Position</h2>
+            <p>Positioned relative to its normal position using <code>top</code> and <code>left</code>.</p>
+            <div class="example">Relative</div>
+        </div>
+
+        <div class="demo-box absolute">
+            <h2>Absolute Position</h2>
+            <p>Removed from flow and positioned relative to nearest positioned ancestor.</p>
+            <div class="example">Absolute</div>
+        </div>
+
+        <div class="demo-box fixed">
+            <h2>Fixed Position</h2>
+            <p>Fixed to the viewport. Doesn't move on scroll.</p>
+            <div class="example">Fixed</div>
+        </div>
+
+        <div class="demo-box">
+            <h2>Sticky Position</h2>
+            <p>Scroll inside the box below to see the sticky box stick to the top when it reaches 10px from the top.</p>
+            <div class="sticky-wrapper">
+                <div class="sticky">Sticky Box</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut purus eu sem bibendum
+                    hendrerit. Vivamus non facilisis dolor, at dapibus nunc.</p>
+                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin eget
+                    finibus tortor. In pulvinar orci ac sapien ultricies facilisis. Suspendisse tempus justo in sapien
+                    sagittis, ut feugiat ligula lacinia.</p>
+                <p>Additional content to enable scroll behavior. This ensures the sticky box has enough scroll area to
+                    demonstrate its effect. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec
+                    varius dui. Integer bibendum tristique justo at sagittis. Morbi laoreet, urna sed laoreet viverra,
+                    velit ligula convallis ante, a sollicitudin nisl libero nec arcu.</p>
+                <p>Donec sed ligula in enim facilisis tincidunt. Sed euismod, nisi vel consectetur interdum, nisi
+                    ligula facilisis nunc, nec tincidunt enim erat a quam. Aenean in dolor ac justo
+                    consectetur tincidunt. Quisque at ligula in enim facilisis tincidunt. Sed euismod, nisi vel
+                    consectetur interdum, nisi ligula facilisis nunc, nec tincidunt enim erat a quam.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti assumenda ipsum facere quis? At, iusto quidem porro ipsam, quaerat cupiditate voluptate eius rem laudantium recusandae amet impedit ad veniam suscipit, sunt est fugit assumenda illum provident. Id modi obcaecati, consequuntur labore eius repudiandae nisi delectus suscipit voluptatum accusantium distinctio dolores assumenda, dolorum blanditiis. Corrupti, provident beatae sit ratione officiis ipsa iusto, similique itaque nesciunt labore quis ad sint nisi molestias voluptatum, veniam non ducimus nam nobis. Cum corporis incidunt minima tempora quod adipisci labore eos placeat a, voluptatibus provident veritatis ipsum ut nesciunt quo cumque esse magni eaque necessitatibus error? Unde quam itaque in quas! Voluptates labore perferendis, sit obcaecati in autem, dicta blanditiis libero quas repudiandae ab neque tempore a aperiam quidem quod consequatur ea. Ipsum distinctio earum delectus atque totam?</p>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

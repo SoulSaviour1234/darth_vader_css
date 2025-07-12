@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Display vs Visibility Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #003366;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      background-color: #003399;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0055ff;
+    }
+
+    .box {
+      max-width: 600px;
+      width: 90%;
+      margin: 10px auto;
+      padding: 20px;
+      border: 2px solid;
+      border-radius: 8px;
+      transition: all 0.4s ease;
+      text-align: center;
+    }
+
+    .box1 {
+      background-color: #add8e6;
+      border-color: #0000cd;
+      display: none;
+    }
+
+    .box2 {
+      background-color: #90ee90;
+      border-color: #228b22;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .visible {
+      display: block !important;
+    }
+
+    .shown {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .tooltip {
+      position: relative;
+    }
+
+    .tooltip:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      white-space: nowrap;
+      z-index: 99;
+    }
+
+    .dark-mode {
+      background-color: #1c1c1c;
+      color: #f0f0f0;
+    }
+
+    .dark-mode .box1 {
+      background-color: #334a62;
+    }
+
+    .dark-mode .box2 {
+      background-color: #3c6541;
+    }
+
+    .dark-mode button {
+      background-color: #444;
+      color: #fff;
+    }
+
+    .dark-mode button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Display vs Visibility 🔍</h1>
+
+  <div class="button-group">
+    <div class="tooltip" data-tooltip="This will show the blue box completely in layout">
+      <button onclick="toggleBox1(true)">Show Box 1</button>
+    </div>
+    <div class="tooltip" data-tooltip="This will hide the blue box and remove its space">
+      <button onclick="toggleBox1(false)">Hide Box 1</button>
+    </div>
+    <div class="tooltip" data-tooltip="This will make the green box visible but keep its space">
+      <button onclick="toggleBox2(true)">Show Box 2</button>
+    </div>
+    <div class="tooltip" data-tooltip="This will hide the green box but keep its space">
+      <button onclick="toggleBox2(false)">Hide Box 2</button>
+    </div>
+    <div class="tooltip" data-tooltip="Toggle light/dark mode">
+      <button onclick="toggleDarkMode()">🌗 Toggle Theme</button>
+    </div>
+  </div>
+
+  <div class="box box1" id="box1">
+    <h2><code>display: none</code></h2>
+    <p>This box disappears completely from layout when hidden.</p>
+  </div>
+
+  <div class="box box2" id="box2">
+    <h2><code>visibility: hidden</code></h2>
+    <p>This box becomes invisible but still takes up space.</p>
+  </div>
+
+  <script>
+    function toggleBox1(show) {
+      const box = document.getElementById("box1");
+      box.classList.toggle("visible", show);
+    }
+
+    function toggleBox2(show) {
+      const box = document.getElementById("box2");
+      if (show) {
+        box.classList.add("shown");
+      } else {
+        box.classList.remove("shown");
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+</body>
+</html>

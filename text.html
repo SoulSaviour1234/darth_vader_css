@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Properties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      font-family: 'Smooch Sans', sans-serif;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      position: relative;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 600px;
+      background-color: bisque;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      color: brown;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      animation: fadeIn 0.8s ease, float 4s ease-in-out infinite;
+    }
+
+    .box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-decoration: underline;
+      text-transform: capitalize;
+      line-height: 1.2;
+      font-size: 25px;
+      margin-bottom: 10px;
+      min-height: 32px;
+    }
+
+    p {
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    body.dark .box {
+      background-color: #333;
+      color: #eee;
+      border-color: #555;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
+  <div class="box">
+    <h1 id="typing-text"></h1>
+    <p>This page demonstrates the use of text properties in HTML and CSS.</p>
+    <p>Text can be styled using various CSS properties such as <code>font-size</code>, <code>color</code>, and
+      <code>text-align</code>.</p>
+    <p>Experiment with different styles to see how they affect the appearance of the text.</p>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // Typing Effect
+    const text = "Text Properties";
+    const heading = document.getElementById("typing-text");
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        heading.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(type, 100);
+      }
+    }
+
+    window.onload = type;
+  </script>
+</body>
+</html>

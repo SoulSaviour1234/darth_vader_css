@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced CSS Grid Demo</title>
+
+
+    <style>
+        /* Scroll progress bar */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: #6c5ce7;
+            z-index: 1000;
+            transition: width 0.25s ease;
+        }
+
+        /* Typing effect */
+        .typing {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        :root {
+            --bg-light: #f0f4f8;
+            --bg-dark: #1a1a1a;
+            --text-light: #1a1a1a;
+            --text-dark: #f0f4f8;
+            --cell-color: #6c5ce7;
+            --cell-hover: #a29bfe;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #dfe6e9, #b2bec3, #dfe6e9);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-light);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 15px;
+            background: #2d3436;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .controls button:hover {
+            background: #a29bfe;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cells {
+            background-color: var(--cell-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cells:hover {
+            background-color: var(--cell-hover);
+            transform: scale(1.05);
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dark mode */
+        body.dark {
+            background: #1a1a1a;
+            color: var(--text-dark);
+        }
+
+        body.dark .cells {
+            background-color: #2d3436;
+        }
+
+        body.dark .cells:hover {
+            background-color: #636e72;
+        }
+
+        /* Scroll progress bar */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: #6c5ce7;
+            z-index: 1000;
+            transition: width 0.25s ease;
+        }
+
+        /* Typing effect */
+        .typing {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div class="typing" id="typingText">Welcome to the CSS Grid Showcase!</div>
+
+
+    <div class="controls">
+        <button onclick="toggleGaps()">Toggle Gaps</button>
+        <button onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+        <button onclick="toggleMusic()">🎵 Music</button>
+    </div>
+
+    <div class="container" id="gridContainer">
+        <div class="cells">Cell 1</div>
+        <div class="cells">Cell 2</div>
+        <div class="cells">Cell 3</div>
+        <div class="cells">Cell 4</div>
+        <div class="cells">Cell 5</div>
+        <div class="cells">Cell 6</div>
+        <div class="cells">Cell 7</div>
+        <div class="cells">Cell 8</div>
+        <div class="cells">Cell 9</div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Click Sound -->
+    <audio id="clickSound">
+        <source src="https://www.fesliyanstudios.com/play-mp3/6671" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const container = document.getElementById('gridContainer');
+        const music = document.getElementById('bgMusic');
+        const clickSound = document.getElementById('clickSound');
+
+        function toggleGaps() {
+            clickSound.play();
+            if (container.style.gap === '0px') {
+                container.style.gap = '10px';
+            } else {
+                container.style.gap = '0px';
+            }
+        }
+
+        function toggleTheme() {
+            clickSound.play();
+            document.body.classList.toggle('dark');
+        }
+
+        function toggleMusic() {
+            clickSound.play();
+            const btn = document.querySelector('button[onclick="toggleMusic()"]');
+            if (music.paused) {
+                music.play();
+                btn.textContent = "🔇 Mute";
+            } else {
+                music.pause();
+                btn.textContent = "🎵 Music";
+            }
+        }
+
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.cells').forEach(cell => observer.observe(cell));
+        // Scroll Progress Bar
+        window.onscroll = function () {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        };
+
+        // Auto Dark Mode by Time
+        window.addEventListener('load', () => {
+            const hour = new Date().getHours();
+            if (hour >= 18 || hour < 6) {
+                document.body.classList.add('dark');
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

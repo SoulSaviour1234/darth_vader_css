@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flexbox Grow/Shrink Demo</title>
+  <style>
+    :root {
+      --bg-light: #f0f4f8;
+      --bg-dark: #1e1e2f;
+      --text-light: #1a1a1a;
+      --text-dark: #f9f9f9;
+      --btn-bg: #6c5ce7;
+      --btn-hover: #a29bfe;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .controls {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(to right, #6c5ce7, #341f97);
+      color: white;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      background: var(--btn-bg);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background: var(--btn-hover);
+    }
+
+    .state-label {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+      flex-wrap: wrap;
+      height: 100vh;
+      padding: 20px;
+      transition: all 0.5s ease;
+    }
+
+    .box {
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 10px;
+      position: relative;
+      transition: all 0.5s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .box::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .box1 {
+      flex-grow: 1;
+      background: linear-gradient(135deg, #00cec9, #0984e3);
+    }
+
+    .box2, .box3 {
+      flex: 0 0 200px;
+      background: linear-gradient(135deg, #74b9ff, #a29bfe);
+    }
+
+    .box4 {
+      flex-shrink: 1;
+      background: linear-gradient(135deg, #d63031, #e17055);
+      min-width: 100px;
+    }
+
+    .toggled .box1 {
+      flex-grow: 0;
+    }
+
+    .toggled .box4 {
+      flex-shrink: 0;
+    }
+
+    .toggled .box1::after {
+      content: "flex-grow: 0 ❌";
+    }
+
+    .toggled .box4::after {
+      content: "flex-shrink: 0 ❌";
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .box2, .box3 {
+        flex: 1 1 auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <button onclick="toggleFlex()">Toggle Grow/Shrink</button>
+    <button onclick="toggleMusic()">🎵 Toggle Music</button>
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <div class="state-label" id="stateLabel">State: <strong>Grow ✅ / Shrink ✅</strong></div>
+  </div>
+
+  <div class="container" id="flexContainer">
+    <div class="box box1" data-label="flex-grow: 1 ✅">
+      <h2>Box 1</h2>
+      <p>This box will grow.</p>
+    </div>
+    <div class="box box2" data-label="flex: 0 0 200px">
+      <h2>Box 2</h2>
+      <p>Fixed width. Won't grow or shrink.</p>
+    </div>
+    <div class="box box3" data-label="flex: 0 0 200px">
+      <h2>Box 3</h2>
+      <p>Fixed width. Won't grow or shrink.</p>
+    </div>
+    <div class="box box4" data-label="flex-shrink: 1 ✅">
+      <h2>Box 4</h2>
+      <p>This box will shrink.</p>
+    </div>
+  </div>
+
+  <!-- Sounds -->
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/button-16.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" loop preload="auto"></audio>
+
+  <script>
+    function toggleFlex() {
+      const container = document.getElementById('flexContainer');
+      const label = document.getElementById('stateLabel');
+      const clickSound = document.getElementById('clickSound');
+      clickSound.play();
+      container.classList.toggle('toggled');
+
+      if (container.classList.contains('toggled')) {
+        label.innerHTML = 'State: <strong>Grow ❌ / Shrink ❌</strong>';
+      } else {
+        label.innerHTML = 'State: <strong>Grow ✅ / Shrink ✅</strong>';
+      }
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById('bgMusic');
+      const clickSound = document.getElementById('clickSound');
+      clickSound.play();
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const clickSound = document.getElementById('clickSound');
+      clickSound.play();
+    }
+  </script>
+
+</body>
+</html>

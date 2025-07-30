@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transition Effects</title>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --text-light: #333;
+      --bg-dark: #1a1a1a;
+      --text-dark: #f0f0f0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    .dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .typing {
+      display: inline-block;
+      font-size: 28px;
+      border-right: 3px solid;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(30, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .box {
+      width: 100%;
+      height: 300px;
+      background-color: #4a90e2;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      transition: height 3s ease-in-out 1s;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 2s ease-in-out;
+    }
+
+    .box:hover {
+      height: 350px;
+    }
+
+    .box:hover img {
+      transform: scale(1.05);
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #0077b6;
+      color: white;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #005f87;
+    }
+
+    .dark-mode .btn {
+      background-color: #00b4d8;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span class="typing">✨ Transition Magic is Here!</span></h1>
+    <p>Hover over the image below to see height and zoom transitions.</p>
+
+    <div class="box" id="transitionBox">
+      <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg" alt="Transition Image" />
+    </div>
+
+    <div class="controls">
+      <button class="btn" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
+      <button class="btn" onclick="toggleMusic()">🎵 Toggle Music</button>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-dreams.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Click Sound -->
+  <audio id="click-sound">
+    <source src="https://www.soundjay.com/buttons/sounds/button-29.mp3" type="audio/mp3" />
+  </audio>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      playClickSound();
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      music.paused ? music.play() : music.pause();
+      playClickSound();
+    }
+
+    function playClickSound() {
+      const click = document.getElementById("click-sound");
+      click.currentTime = 0;
+      click.play();
+    }
+
+    // Auto light/dark mode based on time
+    window.addEventListener("DOMContentLoaded", () => {
+      const hour = new Date().getHours();
+      if (hour >= 18 || hour < 6) {
+        document.body.classList.add("dark-mode");
+      }
+
+      // Trigger scroll animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(document.getElementById("transitionBox"));
+    });
+  </script>
+</body>
+</html>
